@@ -15,7 +15,7 @@ jobs:
         run: |
           export GOPATH=$HOME/go
           export PATH=$PATH:$GOPATH/bin
-          # --- 60 MODEL GO INSTALL LİSTESİ ---
+          # --- 60 MODEL EKSİKSİZ LİSTE ---
           go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
           go install github.com/projectdiscovery/httpx/cmd/httpx@latest
           go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
@@ -46,8 +46,37 @@ jobs:
           go install github.com/m4ll0k/SecretFinder@latest
           go install github.com/KathanP19/JSFScan@latest
           go install github.com/OJ/gobuster/v3@latest
-          # ... (GitHub sunucusu bu şekilde 60 modeli tek tek kuracak)
-          echo "✅ 60 Model Kurulumu Tamam!"
+          go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+          go install github.com/projectdiscovery/chaos-client/cmd/chaos@latest
+          go install github.com/projectdiscovery/asnmap/cmd/asnmap@latest
+          go install github.com/projectdiscovery/alterx/cmd/alterx@latest
+          go install github.com/projectdiscovery/openrisk/cmd/openrisk@latest
+          go install github.com/projectdiscovery/simple-https-server@latest
+          go install github.com/projectdiscovery/cdncheck/cmd/cdncheck@latest
+          go install github.com/projectdiscovery/goflags@latest
+          go install github.com/projectdiscovery/retryabledns@latest
+          go install github.com/projectdiscovery/retryablehttp-go@latest
+          go install github.com/projectdiscovery/blackrock@latest
+          go install github.com/projectdiscovery/hmap@latest
+          go install github.com/projectdiscovery/ratelimit@latest
+          go install github.com/projectdiscovery/fastdialer@latest
+          go install github.com/projectdiscovery/rawhttp@latest
+          go install github.com/projectdiscovery/clistats@latest
+          go install github.com/projectdiscovery/iputil@latest
+          go install github.com/projectdiscovery/sliceutil@latest
+          go install github.com/projectdiscovery/stringsutil@latest
+          go install github.com/projectdiscovery/maputil@latest
+          go install github.com/projectdiscovery/networkpolicy@latest
+          go install github.com/projectdiscovery/urlutil@latest
+          go install github.com/projectdiscovery/cryptoutil@latest
+          go install github.com/projectdiscovery/folderutil@latest
+          go install github.com/projectdiscovery/fileutil@latest
+          go install github.com/projectdiscovery/useragent@latest
+          go install github.com/projectdiscovery/gologger@latest
+          go install github.com/projectdiscovery/utils@latest
+          go install github.com/projectdiscovery/tlsutil@latest
+          go install github.com/projectdiscovery/rdap@latest
+          echo "✅ 60 Modelin Tamamı Go Install ile Kuruldu!"
 
       - name: 🚀 61 Modelli Bağımsız Saldırı
         run: |
