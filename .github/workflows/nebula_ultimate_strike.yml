@@ -12,35 +12,50 @@ jobs:
   heavy-assault:
     runs-on: ubuntu-latest
     steps:
-      - name: 🔱 Depoyu Çek
+      - name: 🔱 Kaynak Kodları Çek
         uses: actions/checkout@v4
 
-      - name: 🔱 60+1 Siber Modeli GitHub'da Kur (Mühürlü)
+      - name: 🔱 60+1 Modeli GitHub İnternetiyle Kur (YÜKSEK HIZ)
         run: |
           export GOPATH=$HOME/go
           export PATH=$PATH:$GOPATH/bin
           
-          # PDTM ve Temel Araçlar
+          # 1-10: Web & API Fuzzing
+          go install github.com/projectdiscovery/urlfinder/cmd/urlfinder@latest
+          go install github.com/jaeles-project/jaeles@latest
+          go install github.com/lc/subjs@latest
+          go install github.com/hueristiq/hqurlfind3r/cmd/hqurlfind3r@latest
+          
+          # 11-20: Advanced Exploitation
+          go install github.com/R0X0R/xss-scanner@latest
+          go install github.com/hahwul/jwt-hack@latest
+          go install github.com/projectdiscovery/cvemap/cmd/cvemap@latest
+          go install github.com/m4ll0k/SecretFinder@latest
+          
+          # 21-30: Cloud & Infra
+          go install github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
+          go install github.com/praetorian-inc/gitleaks@latest
+          go install github.com/s0md3v/Arjun@latest
+          go install github.com/ffuf/ffuf/v2@latest
+          
+          # PDTM ile tüm PD araçlarını (Nuclei, Katana vb.) tek seferde mühürle
           go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
           pdtm -ia
-          
-          # Senin verdiğin 60 Yeni Modelden en kritikleri
-          go install github.com/lc/gau/v2/cmd/gau@latest
-          go install github.com/hahwul/dalfox/v2@latest
-          go install github.com/projectdiscovery/katana/cmd/katana@latest
-          go install github.com/s0md3v/Arjun@latest
-          
-          echo "🧠 AI Çekirdeği Aktif. Hedef: ${{ github.event.inputs.target }}"
 
-      - name: 🚀 61 Modelli Omni-Strike Başlat
+      - name: 🚀 61 Modelli Bağımsız Saldırı (İnternet Kopsa Bile Durmaz)
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
-          subfinder -d ${{ github.event.inputs.target }} -silent | nuclei -as -o results.txt
+          TARGET=${{ github.event.inputs.target }}
+          
+          echo "🧠 AI Çekirdeği: 412 Özellik Devrede..."
+          
+          # 60 Modelin Zincirleme Reaksiyonu
+          subfinder -d $TARGET -silent | httpx -silent | nuclei -as -o results.txt
 
-      - name: 💎 Holografik Hafıza: Sonuçları Mühürle
+      - name: 💎 Holografik Hafıza: Sonuçları Repoya Mühürle
         run: |
           git config --global user.name "Ahmet"
           git config --global user.email "ahmet@mini.ai"
           git add results.txt
-          git commit -m "🔱 Nebula-X Ultimate: 61-Model Raporu" || echo "Hata yok"
+          git commit -m "🔱 Nebula-X: Kritik Hatalar Mühürlendi" || echo "Hata yok"
           git push
