@@ -1,0 +1,29 @@
+name: "Nebula-X Model Downloader"
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Download DeepSeek-V3.2 Speciale
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git lfs install
+          curl -L -H "Authorization: Bearer $HF_TOKEN" \
+          "https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Speciale-GGUF/resolve/main/DeepSeek-V3.2-Speciale-Q8_0.gguf" \
+          -o DeepSeek-V3.2-Speciale-Q8_0.gguf
+
+      - name: Commit & Push to Repo
+        run: |
+          git config --global user.name "Ahmet"
+          git config --global user.email "ahmet@mini.ai"
+          git lfs track "*.gguf"
+          git add .
+          git commit -m "2026 Speciale: 200 Uzman Modeli Mühürlendi"
+          git push
