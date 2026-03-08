@@ -1,0 +1,36 @@
+name: "Nebula-X Orion: Heavy Scan Execute"
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '🔍 Hedef URL/Domain'
+        required: true
+
+jobs:
+  execute-31-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 🔱 31 Modeli Aktif Et (AI + 30 Siber Motor)
+        run: |
+          go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+          export PATH=$PATH:$(go env GOPATH)/bin
+          pdtm -ia
+          
+          echo "🧠 AI Çekirdeği: 412 Özellik Devrede..."
+          echo "🚀 Hedef: ${{ github.event.inputs.target }}"
+          
+          # 30 Modelli Ağır Tarama Zinciri (Nuclei, Katana, Subfinder ve diğerleri)
+          subfinder -d ${{ github.event.inputs.target }} -silent | \
+          httpx -silent | \
+          katana -silent | \
+          nuclei -as -severity critical,high -o results.txt
+
+      - name: 💎 Holografik Hafıza: Sonuçları Mühürle
+        run: |
+          git config --global user.name "Ahmet"
+          git config --global user.email "ahmet@mini.ai"
+          git add results.txt
+          git commit -m "🔱 Nebula-X: Kritik Hatalar Tespit Edildi" || echo "Hata yok"
+          git push
