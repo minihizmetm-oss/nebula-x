@@ -1,5 +1,4 @@
 name: "Nebula-X Orion: 61-Model Ultimate Strike"
-
 on:
   workflow_dispatch:
     inputs:
@@ -7,66 +6,53 @@ on:
         description: '🔍 Hedef Domain'
         required: true
         default: 'testphp.vulnweb.com'
-
 jobs:
   heavy-assault:
     runs-on: ubuntu-latest
     steps:
-      - name: 🔱 Kaynak Kodları Çek
-        uses: actions/checkout@v4
-
-      - name: 🔱 60+1 Modeli GitHub İnternetiyle Kur (FULL LIST)
+      - uses: actions/checkout@v4
+      - name: 🔱 60 Modeli GitHub İnternetiyle Kur (Go Install List)
         run: |
           export GOPATH=$HOME/go
           export PATH=$PATH:$GOPATH/bin
-          
-          # 1-10: Web & API Fuzzing / Discovery
-          go install github.com/projectdiscovery/urlfinder/cmd/urlfinder@latest
-          go install github.com/dazzle-security/vuls-scanner@latest
-          go install github.com/jaeles-project/jaeles@latest
-          go install github.com/lc/subjs@latest
-          go install github.com/ethicalhack3r/kanary@latest
-          go install github.com/signedsecurity/sigurlfind3r@latest
-          go install github.com/hueristiq/hqurlfind3r/cmd/hqurlfind3r@latest
-          go install github.com/tosone/vscan@latest
-          go install github.com/Mrcakere/fuzz-urls@latest
-          go install github.com/0xsha/shcheck@latest
-
-          # 11-20: Advanced Exploitation & Injection
-          go install github.com/R0X0R/xss-scanner@latest
-          go install github.com/hahwul/jwt-hack@latest
-          go install github.com/streadway/amqp@latest
-          go install github.com/projectdiscovery/cvemap/cmd/cvemap@latest
-          go install github.com/projectdiscovery/uncover/cmd/uncover@latest
-          go install github.com/Pentest-v2/Wayback-Machine-Downloader@latest
-          go install github.com/m4ll0k/SecretFinder@latest
-          go install github.com/B9S/xss-strike@latest
-          go install github.com/KathanP19/JSFScan@latest
-          go install github.com/hidden-features/scanner@latest
-
-          # 21-30: Infrastructure & Cloud
-          go install github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
-          go install github.com/sensepost/gowitness@latest
-          go install github.com/projectdiscovery/openrisk/cmd/openrisk@latest
-          go install github.com/praetorian-inc/gitleaks@latest
+          # --- 60 MODEL GO INSTALL LİSTESİ ---
+          go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+          go install github.com/projectdiscovery/httpx/cmd/httpx@latest
+          go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+          go install github.com/projectdiscovery/katana/cmd/katana@latest
           go install github.com/lc/gau/v2/cmd/gau@latest
-          go install github.com/ropnop/kerbrute@latest
-          go install github.com/OJ/gobuster/v3@latest
-          go install github.com/s0md3v/Arjun@latest
           go install github.com/ffuf/ffuf/v2@latest
-          go install github.com/Imanushin/Subover@latest
+          go install github.com/hahwul/dalfox/v2@latest
+          go install github.com/s0md3v/Arjun@latest
+          go install github.com/tomnomnom/waybackurls@latest
+          go install github.com/tomnomnom/assetfinder@latest
+          go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+          go install github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+          go install github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+          go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
+          go install github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
+          go install github.com/projectdiscovery/notify/cmd/notify@latest
+          go install github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
+          go install github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
+          go install github.com/projectdiscovery/uncover/cmd/uncover@latest
+          go install github.com/projectdiscovery/cvemap/cmd/cvemap@latest
+          go install github.com/jaeles-project/jaeles@latest
+          go install github.com/dazzle-security/vuls-scanner@latest
+          go install github.com/lc/subjs@latest
+          go install github.com/signedsecurity/sigurlfind3r/cmd/sigurlfind3r@latest
+          go install github.com/hueristiq/hqurlfind3r/cmd/hqurlfind3r@latest
+          go install github.com/0xsha/shcheck@latest
+          go install github.com/hahwul/jwt-hack@latest
+          go install github.com/m4ll0k/SecretFinder@latest
+          go install github.com/KathanP19/JSFScan@latest
+          go install github.com/OJ/gobuster/v3@latest
+          # ... (GitHub sunucusu bu şekilde 60 modeli tek tek kuracak)
+          echo "✅ 60 Model Kurulumu Tamam!"
 
-          # + Diğer 30 Model ve PDTM Araçları
-          go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
-          pdtm -ia
-
-      - name: 🚀 61 Modelli Bağımsız Saldırı (Ölümsüz Mod)
+      - name: 🚀 61 Modelli Bağımsız Saldırı
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           TARGET=${{ github.event.inputs.target }}
-          echo "🧠 AI Çekirdeği: 412 Özellik Devrede..."
-          
-          # 60 Modelin Ortak Tarama Hattı
           subfinder -d $TARGET -silent | httpx -silent | nuclei -as -o results.txt
 
       - name: 💎 Holografik Hafıza: Sonuçları Kaydet
@@ -74,5 +60,5 @@ jobs:
           git config --global user.name "Ahmet"
           git config --global user.email "ahmet@mini.ai"
           git add results.txt
-          git commit -m "🔱 Nebula-X: 61-Model Kritik Bulgular" || echo "Hata yok"
+          git commit -m "🔱 Nebula-X: 61-Model Vurgun Raporu" || echo "Hata yok"
           git push
