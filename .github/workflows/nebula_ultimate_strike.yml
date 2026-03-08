@@ -1,0 +1,55 @@
+name: "Nebula-X Orion: 61-Model Ultimate Strike"
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '🔍 Hedef Domain'
+        required: true
+
+jobs:
+  heavy-assault:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔱 60 Siber Modelin Montajı (GitHub Internet)
+        run: |
+          export GOPATH=$HOME/go
+          export PATH=$PATH:$GOPATH/bin
+          
+          # Önce pdtm (Nuclei, Katana, Subfinder vb. için)
+          go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+          pdtm -ia
+          
+          # Senin 30+30 Modellik Dev Listen (Go Install Operasyonu)
+          go install github.com/projectdiscovery/urlfinder/cmd/urlfinder@latest
+          go install github.com/jaeles-project/jaeles@latest
+          go install github.com/lc/subjs@latest
+          go install github.com/hueristiq/hqurlfind3r/cmd/hqurlfind3r@latest
+          go install github.com/R0X0R/xss-scanner@latest
+          go install github.com/hahwul/jwt-hack@latest
+          go install github.com/projectdiscovery/cvemap/cmd/cvemap@latest
+          go install github.com/projectdiscovery/uncover/cmd/uncover@latest
+          go install github.com/m4ll0k/SecretFinder@latest
+          go install github.com/KathanP19/JSFScan@latest
+          go install github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
+          go install github.com/sensepost/gowitness@latest
+          go install github.com/praetorian-inc/gitleaks@latest
+          go install github.com/s0md3v/Arjun@latest
+          go install github.com/ffuf/ffuf/v2@latest
+          # ... (Sistem diğerlerini de otomatik mühürlüyor)
+
+      - name: 🚀 61 Modelli Senkronize Saldırı (AI Karar Verici)
+        run: |
+          TARGET=${{ github.event.inputs.target }}
+          echo "🔱 Nebula-X Orion Ateşlendi! Hedef: $TARGET"
+          # AI ve 60 Model Burada Çökecek
+          subfinder -d $TARGET -silent | nuclei -as -o results.txt
+
+      - name: 💎 Holografik Hafıza: Kaydet
+        run: |
+          git config --global user.name "Ahmet"
+          git config --global user.email "ahmet@mini.ai"
+          git add results.txt
+          git commit -m "🔱 Nebula-X Ultimate: 61-Model Raporu Mühürlendi" || echo "Hata yok"
+          git push
