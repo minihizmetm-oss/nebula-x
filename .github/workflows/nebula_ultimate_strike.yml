@@ -1,5 +1,8 @@
 name: "Nebula-X Orion: 61-Model Ultimate Strike"
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       target:
@@ -81,7 +84,8 @@ jobs:
       - name: 🚀 61 Modelli Bağımsız Saldırı
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
-          TARGET=${{ github.event.inputs.target }}
+          # Eğer input boşsa varsayılan hedefe vurur
+          TARGET=${{ github.event.inputs.target || 'testphp.vulnweb.com' }}
           subfinder -d $TARGET -silent | httpx -silent | nuclei -as -o results.txt
 
       - name: 💎 Holografik Hafıza: Sonuçları Kaydet
