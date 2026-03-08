@@ -2,6 +2,10 @@ name: "Nebula-X Model Downloader"
 on:
   workflow_dispatch:
 
+# Bu kısım botun repona dosya yazabilmesini sağlar
+permissions:
+  contents: write
+
 jobs:
   download:
     runs-on: ubuntu-latest
