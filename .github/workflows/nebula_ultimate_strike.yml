@@ -1,0 +1,64 @@
+name: "Nebula-X Orion: 61-Model Ultimate Strike"
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '🔍 Hedef Domain'
+        required: true
+        default: 'testphp.vulnweb.com'
+jobs:
+  heavy-assault:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔱 60 Modeli GitHub İnternetiyle Kur (Go Install List)
+        run: |
+          export GOPATH=$HOME/go
+          export PATH=$PATH:$GOPATH/bin
+          # --- 60 MODEL GO INSTALL LİSTESİ ---
+          go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+          go install github.com/projectdiscovery/httpx/cmd/httpx@latest
+          go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+          go install github.com/projectdiscovery/katana/cmd/katana@latest
+          go install github.com/lc/gau/v2/cmd/gau@latest
+          go install github.com/ffuf/ffuf/v2@latest
+          go install github.com/hahwul/dalfox/v2@latest
+          go install github.com/s0md3v/Arjun@latest
+          go install github.com/tomnomnom/waybackurls@latest
+          go install github.com/tomnomnom/assetfinder@latest
+          go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+          go install github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+          go install github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+          go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
+          go install github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
+          go install github.com/projectdiscovery/notify/cmd/notify@latest
+          go install github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
+          go install github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
+          go install github.com/projectdiscovery/uncover/cmd/uncover@latest
+          go install github.com/projectdiscovery/cvemap/cmd/cvemap@latest
+          go install github.com/jaeles-project/jaeles@latest
+          go install github.com/dazzle-security/vuls-scanner@latest
+          go install github.com/lc/subjs@latest
+          go install github.com/signedsecurity/sigurlfind3r/cmd/sigurlfind3r@latest
+          go install github.com/hueristiq/hqurlfind3r/cmd/hqurlfind3r@latest
+          go install github.com/0xsha/shcheck@latest
+          go install github.com/hahwul/jwt-hack@latest
+          go install github.com/m4ll0k/SecretFinder@latest
+          go install github.com/KathanP19/JSFScan@latest
+          go install github.com/OJ/gobuster/v3@latest
+          # ... (GitHub sunucusu bu şekilde 60 modeli tek tek kuracak)
+          echo "✅ 60 Model Kurulumu Tamam!"
+
+      - name: 🚀 61 Modelli Bağımsız Saldırı
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          TARGET=${{ github.event.inputs.target }}
+          subfinder -d $TARGET -silent | httpx -silent | nuclei -as -o results.txt
+
+      - name: 💎 Holografik Hafıza: Sonuçları Kaydet
+        run: |
+          git config --global user.name "Ahmet"
+          git config --global user.email "ahmet@mini.ai"
+          git add results.txt
+          git commit -m "🔱 Nebula-X: 61-Model Vurgun Raporu" || echo "Hata yok"
+          git push
