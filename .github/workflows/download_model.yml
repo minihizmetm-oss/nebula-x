@@ -2,7 +2,6 @@ name: "Nebula-X Model Downloader"
 on:
   workflow_dispatch:
 
-# Bu kısım botun repona dosya yazabilmesini sağlar
 permissions:
   contents: write
 
@@ -15,11 +14,10 @@ jobs:
           lfs: true
 
       - name: Download DeepSeek-V3.2 Speciale
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git lfs install
-          curl -L -H "Authorization: Bearer $HF_TOKEN" \
+          # Token'ı direkt buraya mühürledik kanka
+          curl -L -H "Authorization: Bearer Hf_thxVWQztEkWZumgPUClRnlKbiiayOHnviK" \
           "https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Speciale-GGUF/resolve/main/DeepSeek-V3.2-Speciale-Q8_0.gguf" \
           -o DeepSeek-V3.2-Speciale-Q8_0.gguf
 
