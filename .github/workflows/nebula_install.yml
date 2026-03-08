@@ -1,0 +1,18 @@
+name: "Nebula-X: 31-Model Heavy Installer"
+on:
+  workflow_dispatch:
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔱 30 Modelin Kurulumu (ProjectDiscovery & Heavy Tools)
+        env:
+          MY_HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+          export PATH=$PATH:$(go env GOPATH)/bin
+          pdtm -ia
+          sudo apt-get install nmap sqlmap nikto -y
+          echo "✅ 30 Model ve +1 AI Çekirdeği GitHub Sunucusuna Mühürlendi."
